@@ -6,12 +6,12 @@
     "enabled": true
   },
   "assets": {
+    "directory": "dist",
     "not_found_handling": "single-page-application"
   },
   "compatibility_flags": [
     "nodejs_compat"
   ],
-  // TAMBAHKAN BAGIAN INI:
   "d1_databases": [
     {
       "binding": "DB",
