@@ -10,5 +10,13 @@
   },
   "compatibility_flags": [
     "nodejs_compat"
+  ],
+  // TAMBAHKAN BAGIAN INI:
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "buku3",
+      "database_id": "72599521-1e9d-487a-a831-62e74ca91d78"
+    }
   ]
 }
