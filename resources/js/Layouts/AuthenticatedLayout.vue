@@ -43,10 +43,7 @@ const handleLogout = () => {
                                 <path d="M8 15h5" />
                             </svg>
                         </span>
-                        <div>
-                            <div class="text-sm font-bold uppercase tracking-[0.28em] text-gray-300">Perpustakaan</div>
-                            <div class="text-xs text-gray-500">Ruang kerja</div>
-                        </div>
+<img src="/images/logo.png" alt="Logo" class="h-12 w-auto flex-shrink-0 bg-black/30 backdrop-blur-sm rounded">
                     </Link>
 
                     <NotificationBell />
@@ -125,10 +122,7 @@ const handleLogout = () => {
                             <path d="M8 15h5" />
                         </svg>
                     </span>
-                    <div>
-                        <div class="text-sm font-bold uppercase tracking-[0.24em] text-gray-200">Perpustakaan</div>
-                        <div class="text-xs text-gray-500">Ruang kerja</div>
-                    </div>
+<img src="/images/logo.png" alt="Logo" class="h-11 w-auto flex-shrink-0 bg-black/30 backdrop-blur-sm rounded">
                 </Link>
 
                 <div class="flex items-center gap-2">
