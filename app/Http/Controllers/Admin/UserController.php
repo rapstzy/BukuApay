@@ -25,8 +25,12 @@ class UserController extends Controller
             });
         }
 
+        $perPage = $request->get('per_page', 12);
+        $users = $query->paginate($perPage)->appends($request->query());
+
         return Inertia::render('Admin/Users', [
-            'users' => $query->paginate(12)->withQueryString(),
+            'users' => $users,
+            'per_page_options' => [5, 10, 25, 50, 100],
         ]);
     }
 

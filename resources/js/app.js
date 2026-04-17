@@ -4,7 +4,10 @@ import './bootstrap';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createApp, h } from 'vue';
-import { ZiggyVue } from '../../vendor/tightenco/ziggy';
+
+// 👇 Baris ini yang diubah, dari '../../vendor/tightenco/ziggy' menjadi 'ziggy-js'
+import { ZiggyVue } from 'ziggy-js';
+
 import TopLoader from './Components/TopLoader.vue';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Apay\'s Books';

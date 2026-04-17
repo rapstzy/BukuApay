@@ -1,7 +1,8 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import { Head, router, useForm } from '@inertiajs/vue3';
+import { Head, router, useForm, usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import Modal from '@/Components/Modal.vue';
 
 const props = defineProps({
     book: {
@@ -22,6 +23,10 @@ const form = useForm({
     cover_path: props.book.cover || '',
 });
 
+const page = usePage();
+const flash = page.props.flash;
+const showSuccessModal = ref(false);
+const showErrorModal = ref(false);
 const coverPreview = ref(props.book.cover_url || props.book.cover || null);
 
 const normalizeCoverPath = (path) => {
@@ -67,6 +72,15 @@ const handleCoverPathInput = () => {
 const submitForm = () => {
     form.put(route('books.update', props.book.id), {
         forceFormData: true,
+        preserveState: true,
+        preserveScroll: true,
+        onSuccess: () => {
+            showSuccessModal = true;
+            router.reload({ only: ['book'] });
+        },
+        onError: () => {
+            showErrorModal = true;
+        },
     });
 };
 
@@ -83,6 +97,28 @@ const categories = ['Umum', 'Fiksi', 'Non-Fiksi', 'Biografi', 'Sejarah', 'Seni',
     <Head :title="`Edit - ${book.title}`" />
 
     <AppLayout>
+        <div v-if="flash?.success" class="mx-auto max-w-5xl px-4 py-5">
+            <div class="rounded-2xl border border-emerald-500/50 bg-emerald-500/10 p-4 text-emerald-400">
+                {{ flash.success }}
+            </div>
+        </div>
+        <div v-if="flash?.error" class="mx-auto max-w-5xl px-4 py-5">
+            <div class="rounded-2xl border border-red-500/50 bg-red-500/10 p-4 text-red-400">
+                {{ flash.error }}
+            </div>
+        </div>
+        <Modal :show="showSuccessModal" @close="showSuccessModal = false">
+            <div class="p-6">
+                <h3 class="text-lg font-bold text-white">Berhasil!</h3>
+                <p class="mt-2 text-gray-300">Buku berhasil diperbarui.</p>
+            </div>
+        </Modal>
+        <Modal :show="showErrorModal" @close="showErrorModal = false">
+            <div class="p-6">
+                <h3 class="text-lg font-bold text-red-400">Gagal!</h3>
+                <p class="mt-2 text-gray-300">Terjadi kesalahan. Periksa form dan coba lagi.</p>
+            </div>
+        </Modal>
         <div class="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
             <section class="rounded-[2rem] border border-gray-800 bg-[radial-gradient(circle_at_top_left,_rgba(29,155,240,0.18),_transparent_35%),linear-gradient(160deg,_#040404_0%,_#0a0a0a_55%,_#111111_100%)] p-8 shadow-2xl shadow-black/30 sm:p-10">
                 <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">

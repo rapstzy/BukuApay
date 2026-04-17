@@ -38,16 +38,8 @@ const submit = () => {
                 <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:48px_48px] opacity-30"></div>
                 <div class="relative mx-auto flex h-full max-w-xl flex-col justify-between">
                     <Link href="/" class="inline-flex items-center gap-3 self-start rounded-full border border-gray-800 bg-black/60 px-4 py-2 backdrop-blur">
-                        <span class="flex h-10 w-10 items-center justify-center rounded-full border border-gray-700 bg-white text-black">
-                            <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M4 19.5V6.8c0-1 .8-1.8 1.8-1.8H19" />
-                                <path d="M6.5 5h11.7c.8 0 1.5.7 1.5 1.5v12c0 .8-.7 1.5-1.5 1.5H6.5c-.8 0-1.5-.7-1.5-1.5v-12C5 5.7 5.7 5 6.5 5Z" />
-                                <path d="M8 8h8" />
-                                <path d="M8 11.5h8" />
-                                <path d="M8 15h5" />
-                            </svg>
-                        </span>
-                        <span class="text-sm font-semibold tracking-[0.2em] text-gray-300">APAY'S BOOKS</span>
+<img src="/images/logo.png" alt="Apay's Books" class="h-10 w-auto flex-shrink-0 bg-black/20 backdrop-blur-sm rounded">
+                        <span class="text-sm font-semibold tracking-[0.2em] text-gray-300">Apaysbooks</span>
                     </Link>
 
                     <div class="py-16 lg:py-0">

@@ -15,6 +15,16 @@ const page = usePage();
 const flashSuccess = computed(() => page.props.flash?.success || '');
 const authUser = computed(() => page.props.auth.user);
 const deletingId = ref(null);
+const perPage = ref(page.props.per_page || 12);
+const perPageOptions = [5, 10, 25, 50, 100];
+
+const updatePerPage = (value) => {
+    const params = {
+        ...page.props.users?.links?.[0]?.url ? new URLSearchParams(new URL(page.props.users.links[0].url).search) : {},
+        per_page: value
+    };
+    router.get(route('admin.users.index'), Object.fromEntries(params), { preserveState: true, preserveScroll: true });
+};
 
 const deleteUser = (user) => {
     if (confirm(`Apakah Anda yakin ingin menghapus pengguna ${user.name}? Semua data peminjaman terkait juga akan terhapus.`)) {
@@ -61,9 +71,21 @@ const roleLabel = (role) => role === 'admin' ? 'Admin' : 'User';
                             <div class="text-xs uppercase tracking-[0.35em] text-gray-500">Pengguna</div>
                             <h2 class="mt-2 text-2xl font-black text-white">Daftar akun</h2>
                         </div>
-                        <span class="rounded-full border border-gray-800 bg-white/5 px-4 py-2 text-xs font-semibold text-gray-300">
-                            {{ users.data?.length || 0 }} item
-                        </span>
+                        <div class="flex items-center gap-3">
+                            <span class="rounded-full border border-gray-800 bg-white/5 px-4 py-2 text-xs font-semibold text-gray-300">
+                                {{ users.data?.length || 0 }} item
+                            </span>
+                            <label class="text-xs text-gray-400">Tampilkan:</label>
+                            <select
+                                v-model="perPage"
+                                @change="updatePerPage(perPage)"
+                                class="rounded-full border border-gray-800 bg-black px-3 py-1 text-xs focus:border-white focus:outline-none"
+                            >
+                                <option v-for="option in perPageOptions" :key="option" :value="option">
+                                    {{ option }}
+                                </option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="mt-6 space-y-4">
