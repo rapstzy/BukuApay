@@ -1,1 +1,1 @@
-    web: npm install && npm run build && php artisan config:cache && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080
+    web: php artisan config:clear && php artisan cache:clear && php artisan view:clear && rm -rf public/build && npm install && npm run build && php artisan config:cache && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080
